@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>
+
+    function game() {
+        
+        let round = 1;
+        let maxRounds = 5;
+        
+        console.log("GAME START! Playing " + maxRounds + " rounds.");
+        
+        for(round; round <= maxRounds; round++) {
+            console.log("ROUND " + round);
+            let computerSelection = computerPlay();
+            let playerInput = prompt("Please play ROCK, PAPER, or SCISSORS");
+            let result = playRound(playerInput, computerSelection);
+            console.log(result);
+        }
+    }
+
+    function playRound(playerSelection, computerSelection) {
+        let play = playerSelection.toUpperCase();
+        console.log(play);
+        let comp = computerSelection.toUpperCase();
+        console.log(comp);
+        // Input Validation
+        if(play != "ROCK" && play != "PAPER" && play != "SCISSORS") {
+            return "Sorry, that's not a valid play. Try again.";
+        }
+        // Win Condition
+        if((play == "ROCK" && comp == "SCISSORS") ||
+           (play == "PAPER" && comp == "ROCK") ||
+           (play == "SCISSORS" && comp == "PAPER")) {
+            return (play + " beats " + comp + ": You Win!");
+        }
+        // Lose Condition
+        if((play == "SCISSORS" && comp == "ROCK") ||
+           (play == "ROCK" && comp == "PAPER") ||
+           (play == "PAPER" && comp == "SCISSORS")) {
+            return (comp + " beats " + play + ": You Lose!");
+        }
+        // Draw Condition
+        if (play == comp) {
+            return "Draw Game!"
+        }
+        else return "ERROR: Outside edge case reached"
+            
+    }
+
+    function computerPlay() {
+        let randomNumber = Math.floor(Math.random()*100) % 3;
+        if (randomNumber == 0) {
+            return "Rock";
+        }
+        if (randomNumber == 1) {
+            return "Paper";
+        }
+        if (randomNumber == 2) {
+            return "Scissors";
+        }
+    }
+  </script>
+</body>
+</html>
